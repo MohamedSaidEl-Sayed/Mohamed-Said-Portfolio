@@ -1,0 +1,135 @@
+﻿@page "/Home"
+@layout NoLayout
+@inject ICertificationService certificationService
+@inject ICourseService courseService
+@inject ICourseCategoryService courseCategoryService
+@inject IExperienceService experienceService
+@inject ISkillCategoryService skillCategoryService
+@inject ISkillService skillService
+@inject IProjectService projectService
+@inject IAdminService adminService
+@inject IContactIconService contactIconService
+
+
+<MainNav Name="@(adminDto?.Name)"/>
+
+<Hero AdminDto="adminDto" ContactIconDtos="ContactIconDtos" />
+
+
+<Experiences_Edu Experiences="experiences"/>
+
+<Projects ProjectDtos="projectDtos" />
+
+<Courses_Certis CourseCategories="courseCategories" Courses="courses" Certifications="certifications" CategoryId="categoryId" />
+
+<Skills SkillCategories="skillCategories" SkillDtos="skillDtos" CategoryId="skillCategoryId" />
+
+
+<Footer AdminDto="adminDto" ContactIconDtos="ContactIconDtos" />
+
+<BackToTop />
+
+
+@code {
+
+    // loading courses and certifications data
+    private IEnumerable<CourseCategoryDto>? courseCategories;
+    private IEnumerable<CertificationDto>? certifications;
+    private IEnumerable<CourseDto>? courses;
+    private int categoryId;
+
+    public async Task LoadCourses_CertisDataAsync()
+    {
+        // Fetch course categories from the service
+        courseCategories = await courseCategoryService.GetAllAsync() ?? new List<CourseCategoryDto>();
+        categoryId = courseCategories?.FirstOrDefault()?.Id ?? 0;
+        CourseCategoryDto? firstEle = courseCategories?.FirstOrDefault();
+        if (firstEle is not null)
+        {
+            firstEle.IsFirstElement = true; // Set the first element flag
+            categoryId = firstEle.Id;
+        }
+
+        // Fetch certifications from the service
+        certifications = await certificationService.GetSomeCertificationsAsync(categoryId, 0, 3) ?? new List<CertificationDto>();
+
+        // Fetch courses from the service
+        courses = await courseService.GetSomeCoursesAsync(categoryId, 0, 3) ?? new List<CourseDto>();
+    }
+
+    //loading experiences and education data
+    private IEnumerable<ExperienceDto>? experiences;
+    public async Task LoadExperiences_EduDataAsync()
+    {
+        experiences = await experienceService.GetAllAsync() ?? new List<ExperienceDto>();
+    }
+
+
+    // loading Skills data
+    private IEnumerable<SkillCategoryDto>? skillCategories;
+    private IEnumerable<SkillDto>? skillDtos;
+    private int skillCategoryId;
+
+    public async Task LoadSkillsDataAsync()
+    {
+        // Fetch course categories from the service
+        skillCategories = await skillCategoryService.GetAllAsync() ?? new List<SkillCategoryDto>();
+        SkillCategoryDto? firstEle = skillCategories?.FirstOrDefault();
+        if(firstEle is not null)
+        {
+            firstEle.IsFirstElement = true; // Set the first element flag
+            skillCategoryId = firstEle.Id;
+        }
+
+        // Fetch skills from the service
+        skillDtos = await skillService.GetByCategoryIdAsync(skillCategoryId) ?? new List<SkillDto>();
+    }
+
+
+    // loading Skills data
+    private IEnumerable<ProjectDto>? projectDtos;
+
+    public async Task LoadProjectsDataAsync()
+    {
+        // Fetch Projects from the service
+        projectDtos = await projectService.GetAllAsync() ?? new List<ProjectDto>();
+
+    }
+
+    // loading Hero section data and footer data
+    private AdminDto? adminDto;
+    private IEnumerable<ContactIconDto>? ContactIconDtos;
+
+    public async Task LoadHeroDataAsync()
+    {
+        // Fetch admin data
+        var admins = await adminService.GetAllAsync();
+        adminDto = admins?.FirstOrDefault() ?? new AdminDto();
+
+        // Fetch contact icons
+        ContactIconDtos = await contactIconService.GetAllAsync() ?? new List<ContactIconDto>();
+    }
+
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        
+        // Load Hero section data
+        await LoadHeroDataAsync();
+
+        // Load experiences and education data
+        await LoadExperiences_EduDataAsync();
+
+        // Load Projects data
+        await LoadProjectsDataAsync();
+
+        // Load courses and certifications data
+        await LoadCourses_CertisDataAsync();
+
+        // Load Skills data
+        await LoadSkillsDataAsync();
+
+    }
+    
+}

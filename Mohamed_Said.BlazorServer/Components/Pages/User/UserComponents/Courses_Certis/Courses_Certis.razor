@@ -1,0 +1,101 @@
+﻿@inject ICertificationService certificationService
+@inject ICourseService courseService
+@inject IJSRuntime JSRuntime;
+
+
+
+<!-- Certifications & Courses Section -->
+<section id="courses" class="py-20 bg-light-primary dark:bg-dark-secondary transition-colors duration-300">
+    <div class="container mx-auto px-4">
+        <!-- Section Header -->
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 gradient-text">
+            Certifications & Courses
+        </h2>
+        
+        <!-- Categories Slider -->
+        <div class="relative max-w-4xl mx-auto mb-12 px-3 transition-colors duration-300">
+            <!-- Left Arrow -->
+            <button id="course-category-slideLeft" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 bg-light-primary dark:bg-dark-primary rounded-full p-2 hover:scale-110 transition-all duration-300 shadow-lg z-10 outline-none">
+                <svg class="w-6 h-6 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+            </button>
+
+            <!-- Categories Container -->
+            <div id="course-categoriesContainer" class="flex gap-4 overflow-x-auto scroll-smooth hide-scrollbar py-4">
+
+                @if(CourseCategories is not null && CourseCategories.Any())
+                {
+                    foreach(CourseCategoryDto courseCategory in CourseCategories)
+                    {
+                        <Category CourseCategory="courseCategory" OnCategoryChange="HandleCategoryChange"/>
+                    }
+                }
+
+                
+            </div>
+
+            <!-- Right Arrow -->
+            <button id="course-category-slideRight" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 bg-light-primary dark:bg-dark-primary rounded-full p-2 hover:scale-110 transition-all duration-300 shadow-lg z-10">
+                <svg class="w-6 h-6 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
+        </div>
+
+
+        <!-- Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            @if (Courses is not null && Courses.Any())
+            {
+                foreach (CourseDto course in Courses)
+                {
+                    <CourseCard Course="course" />
+                }
+            }
+            
+            @if (Certifications is not null && Certifications.Any())
+            {
+                foreach (CertificationDto certification in Certifications)
+                {
+                    <CertiCard Certification="certification" />
+                }
+            }
+
+        </div>
+    </div>
+</section>
+
+
+@code {
+    [Parameter]
+    public IEnumerable<CourseCategoryDto>? CourseCategories{ get; set; }
+    [Parameter]
+    public IEnumerable<CertificationDto>? Certifications { get; set; }
+    [Parameter]
+    public IEnumerable<CourseDto>? Courses { get; set; }
+    [Parameter]
+    public int CategoryId { get; set; }
+
+    
+
+    private async Task HandleCategoryChange(int categoryId)
+    {
+        this.CategoryId = categoryId;
+
+        // Fetch certifications based on the selected category
+        Certifications = await certificationService.GetSomeCertificationsAsync(categoryId, 0, 3) ?? new List<CertificationDto>();
+
+        // Fetch courses based on the selected category
+        Courses = await courseService.GetSomeCoursesAsync(categoryId, 0, 3) ?? new List<CourseDto>();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JSRuntime.InvokeVoidAsync("initCourseCategorySlider");
+        }
+    }
+}

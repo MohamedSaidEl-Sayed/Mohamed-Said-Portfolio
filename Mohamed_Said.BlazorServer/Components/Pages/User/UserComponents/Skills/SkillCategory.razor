@@ -1,0 +1,37 @@
+﻿@inject IJSRuntime JSRuntime;
+
+@if (SkillCategorydto is not null)
+{
+    @* stopPropagation This tells Blazor not to stop propagation, so your JS event listener can still run. *@
+    <button @onclick="async () => await OnCategoryChange.InvokeAsync(SkillCategorydto.Id)" 
+            id=@(btnId) class="skill-category-btn flex items-center gap-2 px-6 py-3 rounded-full whitespace-nowrap
+        @(SkillCategorydto.IsFirstElement ? "bg-brand-blue text-white" : "bg-light-primary dark:bg-dark-secondary hover:bg-brand-blue/10") transition-all duration-300 transform hover:scale-105 outline-none">
+        <span>@SkillCategorydto.Icon</span>
+        <span>@(SkillCategorydto.Name ?? "")</span>
+    </button>
+}
+
+
+@code {
+    [Parameter]
+    public SkillCategoryDto? SkillCategorydto { get; set; } = new SkillCategoryDto();
+
+    private string? btnId;
+
+    protected override void OnInitialized()
+    {
+        btnId = $"skill-category-{SkillCategorydto?.Name}-{SkillCategorydto?.Id}";
+    }
+
+    [Parameter]
+    public EventCallback<int> OnCategoryChange { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JSRuntime.InvokeVoidAsync("clickSkillCategoryButton", btnId);
+        }
+    }
+
+}

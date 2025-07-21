@@ -1,0 +1,36 @@
+﻿@inject IJSRuntime JSRuntime;
+
+@if(CourseCategory is not null)
+{
+    <button @onclick="async () => await OnCategoryChange.InvokeAsync(CourseCategory.Id)" 
+        id=@(btnId) class="course-category-btn flex items-center gap-2 px-6 py-3 rounded-full whitespace-nowrap 
+        @(CourseCategory.IsFirstElement ? "bg-brand-blue text-white" : "bg-white dark:bg-dark-primary dark:text-white hover:bg-brand-blue/10")
+         transition-all duration-300 transform hover:scale-105 outline-none">
+        <span>@CourseCategory.Icon</span>
+        <span>@CourseCategory.Name</span>
+    </button>
+
+}
+
+@code {
+    [Parameter]
+    public CourseCategoryDto? CourseCategory { get; set; } = new CourseCategoryDto();
+
+    [Parameter]
+    public EventCallback<int> OnCategoryChange { get; set; }
+
+    private string? btnId;
+
+    protected override void OnInitialized()
+    {
+        btnId = $"course-category-{CourseCategory?.Name}-{CourseCategory?.Id}";
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JSRuntime.InvokeVoidAsync("clickCourseCategoryButton", btnId);
+        }
+    }
+}

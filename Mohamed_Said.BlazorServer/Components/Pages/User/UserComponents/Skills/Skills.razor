@@ -1,0 +1,79 @@
+﻿@inject ISkillService skillService
+@inject IJSRuntime JSRuntime;
+
+
+<!-- Skills Section -->
+<section id="skills" class="py-20 bg-light-secondary dark:bg-dark-primary text-light-text-primary dark:text-dark-text-primary transition-colors duration-300">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 gradient-text ">
+            Technical Skills
+        </h2>
+        <!-- Categories Slider -->
+        <div class="relative max-w-4xl mx-auto mb-12 px-3 transition-colors duration-300">
+            <!-- Left Arrow -->
+            <button id="skill-category-slideLeft" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 bg-light-primary dark:bg-dark-secondary rounded-full p-2 hover:scale-110 transition-all duration-300 shadow-lg z-10 outline-none">
+                <svg class="w-6 h-6 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+            </button>
+
+            <!-- Categories Container -->
+            <div id="skill-categoriesContainer" class="flex gap-4 overflow-x-auto scroll-smooth hide-scrollbar py-4">
+                @if (SkillCategories is not null && SkillCategories.Any())
+                {
+                    foreach (SkillCategoryDto skillCategory in SkillCategories)
+                    {
+                        <SkillCategory SkillCategorydto="skillCategory" OnCategoryChange="HandleCategoryChange"/>
+                    }
+                }
+            </div>
+
+            <!-- Right Arrow -->
+            <button id="skill-category-slideRight" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 bg-light-primary dark:bg-dark-secondary rounded-full p-2 hover:scale-110 transition-all duration-300 shadow-lg z-10">
+                <svg class="w-6 h-6 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Skills Grids -->
+        <div class="max-w-4xl mx-auto">
+            <div class="grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-4  transition-all duration-300">
+                @if (SkillDtos is not null && SkillDtos.Any())
+                {
+                    foreach (SkillDto skill in SkillDtos)
+                    {
+                        <SkillCard Skill="skill" />
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+@code {
+    [Parameter]
+    public IEnumerable<SkillCategoryDto>? SkillCategories { get; set; }
+    [Parameter]
+    public IEnumerable<SkillDto>? SkillDtos { get; set; }
+    [Parameter]
+    public int CategoryId { get; set; }
+
+
+
+    private async Task HandleCategoryChange(int categoryId)
+    {
+        this.CategoryId = categoryId;
+
+        // Fetch skills based on the selected category
+        SkillDtos = await skillService.GetByCategoryIdAsync(categoryId) ?? new List<SkillDto>();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JSRuntime.InvokeVoidAsync("initSkillCategorySlider");
+        }
+    }
+}

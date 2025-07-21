@@ -1,0 +1,112 @@
+﻿
+@if(ProjectVideoDtos is not null && ProjectVideoDtos.Any())
+{
+    <!-- Video Modal/Overlay -->
+    <div id="videoModal" class="@(ShowVideo ? "":"hidden") fixed left-0 top-0 w-full h-full bg-black/90 z-50 flex items-center justify-center transition-all duration-300">
+
+        <!-- Close Button -->
+        <button id="closeVideoModal" @onclick="CloseVideo"
+                class="absolute top-3 right-3 text-white/80 hover:text-white transition-colors duration-300">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+
+        <!-- Modal Content -->
+        <div class="w-full max-w-5xl px-4">
+            @if(currentVideo is not null)
+            {
+                <!-- Video Title -->
+                <h3 id="videoTitle" class="text-white text-lg font-semibold mb-4 text-center md:text-xl">
+                    @(currentVideo.Title ?? "Video Title")
+                </h3>
+
+                <!-- Video Container -->
+                <div class="aspect-video bg-black rounded-lg overflow-hidden">
+                    <iframe id="videoFrame"
+                            class="w-full h-full"
+                            src="https://player.cloudinary.com/embed/?cloud_name=dn7knpkva&public_id=bandicam_2025-02-03_08-10-19-386_j7tvk5&profile=cld-default"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                    </iframe>
+                </div>
+                @* src = "https://www.youtube.com/embed/tvhR505Rc6U" *@
+            }
+        </div>
+
+        <!-- Navigation Arrows -->
+        <button @onclick="PreviousVideo" disabled="@(currentIndex == 0 ? true : false )"
+                class="absolute top-1/2 -left-1 xl:left-12
+                    text-white/80 hover:text-white transition-colors duration-300
+                    disabled:opacity-30 disabled:cursor-not-allowed">
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+        </button>
+
+        <button @onclick="NextVideo"  disabled = "@(currentIndex == ProjectVideoDtos.Count-1 ? true : false )"
+                class="absolute top-1/2 -right-1 xl:right-12
+                    text-white/80 hover:text-white transition-colors duration-300
+                    disabled:opacity-30 disabled:cursor-not-allowed" >
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+        </button>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public List<ProjectVideoDto>? ProjectVideoDtos { get; set; }
+    private ProjectVideoDto? currentVideo;
+    private int currentIndex = 0;
+    [Parameter]
+    public bool ShowVideo { get; set; } = false; // Used to control visibility of the modal
+
+    [Parameter]
+    public EventCallback CloseVideoModal { get; set; } 
+
+
+    protected override void OnParametersSet()
+    {
+        if (ShowVideo)
+        {
+            if (ProjectVideoDtos is not null && ProjectVideoDtos.Any())
+            {
+                currentVideo = ProjectVideoDtos.FirstOrDefault();
+                currentIndex = 0;
+            }
+        }
+        base.OnParametersSet();
+    }
+
+
+
+    private void NextVideo()
+    {
+        if (ProjectVideoDtos is not null && currentIndex < ProjectVideoDtos.Count - 1)
+        {
+            currentIndex++;
+            currentVideo = ProjectVideoDtos[currentIndex];
+        }
+    }
+
+    private void PreviousVideo()
+    {
+        if (ProjectVideoDtos is not null && currentIndex > 0)
+        {
+            currentIndex--;
+            currentVideo = ProjectVideoDtos[currentIndex];
+        }
+    }
+
+    private void CloseVideo()
+    {
+        currentVideo = null ;
+        currentIndex = 0;
+        CloseVideoModal.InvokeAsync();
+    }
+
+    
+}
