@@ -1,6 +1,6 @@
 # 🌐 Mohamed Said | Personal Portfolio Website
 
-[![GitHub](https://img.shields.io/badge/GitHub-Repository-blue?logo=github)](https://github.com/MohamedSaidEl-Sayed/PersonalPortfolio)
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-blue?logo=github)](https://github.com/MohamedSaidEl-Sayed/Mohamed-Said-Portfolio)
 [![ASP.NET Core](https://img.shields.io/badge/ASP.NET%20Core-Framework-purple)](https://dotnet.microsoft.com/)
 [![Blazor Server](https://img.shields.io/badge/Blazor-Server-blueviolet)](https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-CSS-38B2AC?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
@@ -21,7 +21,6 @@
 - [📁 Project Structure](#-project-structure)
 - [📸 Application Screenshots](#-application-screenshots)
 - [🤝 Contributing](#-contributing)
-- [📜 License](#-license)
 
 ---
 
@@ -52,7 +51,7 @@ It allows the admin to manage content via a powerful backend and showcases exper
 ### Frontend
 
 - **Blazor Components** (Razor)
-- **Tailwind CSS** for modern styling
+- **Tailwind CSS v4.1** for modern styling
 - **JavaScript Interop** (for DOM manipulation or third-party integrations)
 
 ### Development Tools
@@ -112,5 +111,98 @@ It allows the admin to manage content via a powerful backend and showcases exper
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/MohamedSaidEl-Sayed/PersonalPortfolio.git
-cd Mohamed_Said/Mohamed_Said.BlazorServer
+git clone https://github.com/MohamedSaidEl-Sayed/Mohamed-Said-Portfolio.git
+cd Mohamed-Said-Portfolio
+```
+
+### 2. Restore NuGet Packages and npm packages
+```bash
+dotnet restore
+npm install
+```
+### 🎨 Tailwind CSS Setup
+
+This project uses [Tailwind CSS v4+](https://tailwindcss.com) with the new config-less setup.
+
+- `input.css` – contains your theme colors, safelists, and source styles.
+- `output.css` – the compiled Tailwind CSS (already included, no build step required).
+
+#### 🔧 Want to customize the design?
+Edit `input.css` directly.
+
+#### 🔁 Want to recompile Tailwind CSS?
+```bash
+npx tailwindcss -i ./wwwroot/input.css -o ./wwwroot/output.css --watch
+
+### 3. Database Setup
+Update the connection string in `appsettings.json`:
+```json
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=PersonalPortfolioDB;Trusted_Connection=true;MultipleActiveResultSets=true"  (e.g. your connection)
+  }
+}
+```
+
+### 4. Apply Database Migrations
+```bash
+dotnet ef database update
+```
+
+### 5. Build and Run the Application
+```bash
+dotnet build
+dotnet run
+```
+
+The application will be available at: `https://localhost:5001` or `http://localhost:5000`
+
+---
+
+## 📁 Project Structure
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! To contribute:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+---
+
+
+## 📱 Application Screenshots
+
+### 🏠 Home Page
+![Main Page](https://github.com/MohamedSaidEl-Sayed/Al-Araby/blob/main/Demo_ScreenShots/MainPage.png)
+
+---
+
+### 👨‍🏫 Manage Resourses
+![Manage Resourses](https://github.com/MohamedSaidEl-Sayed/Al-Araby/blob/main/Demo_ScreenShots/ManagedResources.png)
+
+---
+
+### 📚 Exams
+![Examst](https://github.com/MohamedSaidEl-Sayed/Al-Araby/blob/main/Demo_ScreenShots/Exams.png)
+
+---
+
+### 📊 Quiz Management System
+![Quiz Management](https://github.com/MohamedSaidEl-Sayed/Al-Araby/blob/main/Demo_ScreenShots/QuizManagement.PNG)
+
+---
+
+### 🎬 Videos
+![Videos](https://github.com/MohamedSaidEl-Sayed/Al-Araby/blob/main/Demo_ScreenShots/Videos.png)
+
+---
+
+**⭐ If you find this project helpful, please consider giving it a star on GitHub!**
+
+---
+
+*Last Updated: May 2025*
