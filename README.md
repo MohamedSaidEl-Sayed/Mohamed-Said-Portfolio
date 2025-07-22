@@ -71,13 +71,14 @@ It allows the admin to manage content via a powerful backend and showcases exper
 - Present **courses** and educational achievements
 - Highlight **technical skills** and competencies
 - List **contact methods** like GitHub, LinkedIn, etc.
+- **Blog Page** to Share Experiences and knowledge
 
 ### 🔐 Admin Dashboard
 - **Manage Personal Info**: Create, update, or delete personal Info
 - **Manage Projects**: Create, update, or delete personal projects
 - **Manage Courses**: Display courses with details and links
 - **Skills Section**: Add/edit technical or soft skills
-- **Blog Section**: Post articles or professional thoughts
+- **Blog Page**: Post articles or professional thoughts
 - **Contact Icons**: Dynamically manage social/contact links
 
 ### 📈 Performance & Design
@@ -133,6 +134,7 @@ Edit `input.css` directly.
 #### 🔁 Want to recompile Tailwind CSS?
 ```bash
 npx tailwindcss -i ./wwwroot/input.css -o ./wwwroot/output.css --watch
+```
 
 ### 3. Database Setup
 Update the connection string in `appsettings.json`:
@@ -160,6 +162,24 @@ The application will be available at: `https://localhost:5001` or `http://localh
 ---
 
 ## 📁 Project Structure
+
+### 🏠 Solution
+![Solution](https://github.com/MohamedSaidEl-Sayed/Mohamed-Said-Portfolio/blob/main/ScreenShots/Project_Structure1.png)
+
+---
+
+### 🚀 Blazor Server Project
+![Blazor Server Project](https://github.com/MohamedSaidEl-Sayed/Mohamed-Said-Portfolio/blob/main/ScreenShots/Project_Structure2.png)
+
+---
+
+### Three Class libraries
+- ```🧠 Core – Domain models, interfaces, business logic```
+- ```🏗️ Infrastructure – Data access, EF Core, external services```
+- ```📦 Shared – DTOs, constants, common utilities```
+  
+![Core-Infrastructure-Shared](https://github.com/MohamedSaidEl-Sayed/Mohamed-Said-Portfolio/blob/main/ScreenShots/Project_Structure3.png)
+
 ---
 
 ## 🤝 Contributing
