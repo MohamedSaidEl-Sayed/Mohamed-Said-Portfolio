@@ -182,18 +182,6 @@ The application will be available at: `https://localhost:5001` or `http://localh
 
 ---
 
-## 🤝 Contributing
-
-Contributions are welcome! To contribute:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
----
-
-
 ## 📱 Application Screenshots
 
 ### 🏠 Home Page
@@ -219,6 +207,17 @@ Contributions are welcome! To contribute:
 ### 🎬 Videos
 ![Videos](https://github.com/MohamedSaidEl-Sayed/Al-Araby/blob/main/Demo_ScreenShots/Videos.png)
 
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! To contribute:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 ---
 
 **⭐ If you find this project helpful, please consider giving it a star on GitHub!**
