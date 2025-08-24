@@ -184,28 +184,28 @@ The application will be available at: `https://localhost:5001` or `http://localh
 
 ## 📱 Application Screenshots
 
-### 🏠 Home Page
-![Main Page](https://github.com/MohamedSaidEl-Sayed/Al-Araby/blob/main/Demo_ScreenShots/MainPage.png)
+### 🏠 Hero Section 
+![Hero Section](https://github.com/MohamedSaidEl-Sayed/Mohamed-Said-Portfolio/blob/main/ScreenShots/Hero_Section.png)
 
 ---
 
-### 👨‍🏫 Manage Resourses
-![Manage Resourses](https://github.com/MohamedSaidEl-Sayed/Al-Araby/blob/main/Demo_ScreenShots/ManagedResources.png)
+### 💼 Experiences
+![Experiences](https://github.com/MohamedSaidEl-Sayed/Mohamed-Said-Portfolio/blob/main/ScreenShots/Experiences.png)
 
 ---
 
-### 📚 Exams
-![Examst](https://github.com/MohamedSaidEl-Sayed/Al-Araby/blob/main/Demo_ScreenShots/Exams.png)
+### 🚀 Projects
+![Projects](https://github.com/MohamedSaidEl-Sayed/Mohamed-Said-Portfolio/blob/main/ScreenShots/Projects.png)
 
 ---
 
-### 📊 Quiz Management System
-![Quiz Management](https://github.com/MohamedSaidEl-Sayed/Al-Araby/blob/main/Demo_ScreenShots/QuizManagement.PNG)
+### 📜 Certifications
+![Certifications](https://github.com/MohamedSaidEl-Sayed/Mohamed-Said-Portfolio/blob/main/ScreenShots/Certifications.png)
 
 ---
 
-### 🎬 Videos
-![Videos](https://github.com/MohamedSaidEl-Sayed/Al-Araby/blob/main/Demo_ScreenShots/Videos.png)
+### 🛠 Skills
+![Skills](https://github.com/MohamedSaidEl-Sayed/Mohamed-Said-Portfolio/blob/main/ScreenShots/Skills.png)
 
 ---
 
