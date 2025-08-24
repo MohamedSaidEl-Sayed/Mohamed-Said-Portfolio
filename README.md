@@ -71,13 +71,14 @@ It allows the admin to manage content via a powerful backend and showcases exper
 - Present **courses** and educational achievements
 - Highlight **technical skills** and competencies
 - List **contact methods** like GitHub, LinkedIn, etc.
+- **Blog Page** to Share Experiences and knowledge
 
 ### 🔐 Admin Dashboard
 - **Manage Personal Info**: Create, update, or delete personal Info
 - **Manage Projects**: Create, update, or delete personal projects
 - **Manage Courses**: Display courses with details and links
 - **Skills Section**: Add/edit technical or soft skills
-- **Blog Section**: Post articles or professional thoughts
+- **Blog Page**: Post articles or professional thoughts
 - **Contact Icons**: Dynamically manage social/contact links
 
 ### 📈 Performance & Design
@@ -133,6 +134,7 @@ Edit `input.css` directly.
 #### 🔁 Want to recompile Tailwind CSS?
 ```bash
 npx tailwindcss -i ./wwwroot/input.css -o ./wwwroot/output.css --watch
+```
 
 ### 3. Database Setup
 Update the connection string in `appsettings.json`:
@@ -160,19 +162,25 @@ The application will be available at: `https://localhost:5001` or `http://localh
 ---
 
 ## 📁 Project Structure
+
+### 🏠 Solution
+![Solution](https://github.com/MohamedSaidEl-Sayed/Mohamed-Said-Portfolio/blob/main/ScreenShots/Project_Structure1.png)
+
 ---
 
-## 🤝 Contributing
+### 🚀 Blazor Server Project
+![Blazor Server Project](https://github.com/MohamedSaidEl-Sayed/Mohamed-Said-Portfolio/blob/main/ScreenShots/Project_Structure2.png)
 
-Contributions are welcome! To contribute:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
 ---
 
+### Three Class libraries
+- ```🧠 Core – Domain models, interfaces, business logic```
+- ```🏗️ Infrastructure – Data access, EF Core, external services```
+- ```📦 Shared – DTOs, constants, common utilities```
+  
+![Core-Infrastructure-Shared](https://github.com/MohamedSaidEl-Sayed/Mohamed-Said-Portfolio/blob/main/ScreenShots/Project_Structure3.png)
+
+---
 
 ## 📱 Application Screenshots
 
@@ -199,6 +207,17 @@ Contributions are welcome! To contribute:
 ### 🎬 Videos
 ![Videos](https://github.com/MohamedSaidEl-Sayed/Al-Araby/blob/main/Demo_ScreenShots/Videos.png)
 
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! To contribute:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 ---
 
 **⭐ If you find this project helpful, please consider giving it a star on GitHub!**
