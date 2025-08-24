@@ -82,7 +82,46 @@ h1:focus {
         to {
             opacity: 1;
         }
-    } 
+    }
+
+
+
+ /*not found page style*/
+.gradient-404-text {
+    background: linear-gradient(135deg, var(--color-brand-blue), var(--color-brand-green));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.animate-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+    animation: pulse-slow 2s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes pulse-slow {
+    0%, 100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+}
+
 
 
 

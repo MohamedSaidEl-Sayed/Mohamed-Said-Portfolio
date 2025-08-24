@@ -11,6 +11,7 @@ using Mohamed_Said.Infrastructure.Data.DbContexts;
 using Mohamed_Said.Infrastructure.Data.Identity;
 using Mohamed_Said.Infrastructure.Data.UnitOfWork;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -70,6 +71,8 @@ builder.Services.AddScoped<ISkillService, SkillService>(); // Register the Skill
 builder.Services.AddScoped<IContactIconService, ContactIconService>(); // Register the ContactIcon Service
 builder.Services.AddScoped<IAdminService, AdminService>(); // Register the Admin Service
 
+
+
 builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly); // Register AutoMapper 
 
 builder.Services.AddSingleton<IEmailSender<ApplicationUser>, IdentityNoOpEmailSender>();
@@ -89,6 +92,8 @@ else
 }
 
 app.UseHttpsRedirection();
+
+app.UseStatusCodePagesWithReExecute("/NotFound"); // Use a custom page for 404 Not Found errors
 
 app.UseAuthorization();
 

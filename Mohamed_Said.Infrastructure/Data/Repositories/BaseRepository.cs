@@ -19,7 +19,7 @@ namespace Mohamed_Said.Infrastructure.Data.Repositories
         {
             _context = context;
         }
-
+       
         public async Task<T?> GetByIdAsync(int id)
         {
             return await _context.Set<T>().FindAsync(id); // go to database to find entity and make it async to not block the thread

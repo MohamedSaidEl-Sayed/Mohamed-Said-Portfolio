@@ -35,6 +35,16 @@ namespace Mohamed_Said.Core.Services
             return await _unitOfWork.ProjectRepository.CountAsync();
         }
 
+        public async Task<ProjectDto?> GetByTitleAsync(string? projectTitle)
+        {
+            if (string.IsNullOrEmpty(projectTitle)) return null;
+
+            var entity = await _unitOfWork.ProjectRepository.FindAsync( p => p.Title == projectTitle,
+                                                                        ["ProjectVideos", "ProjectImages"]);
+
+            return _mapper.Map<ProjectDto>(entity);
+        }
+
 
         // Admin
         public async Task<IEnumerable<A_ProjectDto>> A_GetAllAsync()

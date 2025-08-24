@@ -29,7 +29,8 @@
         </h3>
 
         <!-- Course Description -->
-        <p class="text-sm text-gray-600 dark:text-gray-300 mb-4 line-clamp-2 transition-colors duration-300">
+        <p title="@(Course.Description ?? "This is a brief description of the course. It covers various topics and provides in-depth knowledge.")" 
+            class="text-sm text-gray-600 dark:text-gray-300 mb-4 line-clamp-2 transition-colors duration-300">
             @(Course.Description ?? "This is a brief description of the course. It covers various topics and provides in-depth knowledge.")
         </p>
 
@@ -67,7 +68,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                             </svg>
                         </a>
-                        <div class="flex items-center gap-1 flex-wrap text-sm text-light-text-secondary dark:text-dark-text-secondary transition-colors duration-300">
+                        <div class="flex flex-wrap items-center gap-1 flex-wrap text-sm text-light-text-secondary dark:text-dark-text-secondary transition-colors duration-300">
                             <span class="flex items-center gap-1">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
@@ -93,4 +94,18 @@
 @code {
     [Parameter]
     public CourseDto? Course { get; set; } = new CourseDto();
+
+    protected override void OnInitialized()
+    {
+        if (Course is not null)
+        {
+            if (Course.CourseSkills is not null && Course.CourseSkills.Any())
+                Course.CourseSkills = Course.CourseSkills.OrderBy(ps => ps.DisplayOrder).ToList();
+
+            if (Course.CourseLinks is not null && Course.CourseLinks.Any())
+                Course.CourseLinks = Course.CourseLinks.OrderBy(ps => ps.DisplayOrder).ToList();
+        }
+        
+        base.OnInitialized();
+    }
 }

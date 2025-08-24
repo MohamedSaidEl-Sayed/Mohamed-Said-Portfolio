@@ -1,4 +1,4 @@
-﻿@page "/Home"
+﻿@page "/"
 @layout NoLayout
 @inject ICertificationService certificationService
 @inject ICourseService courseService
@@ -9,7 +9,9 @@
 @inject IProjectService projectService
 @inject IAdminService adminService
 @inject IContactIconService contactIconService
+@inject NavigationManager NavigationManager
 
+<PageTitle>@(adminDto?.Name)</PageTitle>
 
 <MainNav Name="@(adminDto?.Name)"/>
 
@@ -31,13 +33,26 @@
 
 
 @code {
+    // loading Hero section data and footer data
+    private AdminDto? adminDto;
+    private IEnumerable<ContactIconDto>? ContactIconDtos;
+    public async Task LoadHeroDataAsync()
+    {
+        // Fetch admin data
+        var admins = await adminService.GetAllAsync();
+        adminDto = admins?.FirstOrDefault() ?? new AdminDto();
+
+        // Fetch contact icons
+        ContactIconDtos = await contactIconService.GetAllAsync() ?? new List<ContactIconDto>();
+    }
+
+
 
     // loading courses and certifications data
     private IEnumerable<CourseCategoryDto>? courseCategories;
     private IEnumerable<CertificationDto>? certifications;
     private IEnumerable<CourseDto>? courses;
     private int categoryId;
-
     public async Task LoadCourses_CertisDataAsync()
     {
         // Fetch course categories from the service
@@ -51,11 +66,13 @@
         }
 
         // Fetch certifications from the service
-        certifications = await certificationService.GetSomeCertificationsAsync(categoryId, 0, 3) ?? new List<CertificationDto>();
+        certifications = await certificationService.GetSomeCertificationsAsync(categoryId, 0, 6) ?? new List<CertificationDto>();
 
         // Fetch courses from the service
-        courses = await courseService.GetSomeCoursesAsync(categoryId, 0, 3) ?? new List<CourseDto>();
+        courses = await courseService.GetSomeCoursesAsync(categoryId, 0, 6) ?? new List<CourseDto>();
     }
+
+
 
     //loading experiences and education data
     private IEnumerable<ExperienceDto>? experiences;
@@ -65,11 +82,11 @@
     }
 
 
+
     // loading Skills data
     private IEnumerable<SkillCategoryDto>? skillCategories;
     private IEnumerable<SkillDto>? skillDtos;
     private int skillCategoryId;
-
     public async Task LoadSkillsDataAsync()
     {
         // Fetch course categories from the service
@@ -86,8 +103,13 @@
     }
 
 
-    // loading Skills data
+
+    // loading Projects data
     private IEnumerable<ProjectDto>? projectDtos;
+    [Parameter]
+    public string? ProjectTitle { get; set; }
+    [Parameter]
+    public string? MediaType { get; set; }  
 
     public async Task LoadProjectsDataAsync()
     {
@@ -96,25 +118,10 @@
 
     }
 
-    // loading Hero section data and footer data
-    private AdminDto? adminDto;
-    private IEnumerable<ContactIconDto>? ContactIconDtos;
-
-    public async Task LoadHeroDataAsync()
-    {
-        // Fetch admin data
-        var admins = await adminService.GetAllAsync();
-        adminDto = admins?.FirstOrDefault() ?? new AdminDto();
-
-        // Fetch contact icons
-        ContactIconDtos = await contactIconService.GetAllAsync() ?? new List<ContactIconDto>();
-    }
-
 
 
     protected override async Task OnInitializedAsync()
     {
-        
         // Load Hero section data
         await LoadHeroDataAsync();
 
@@ -129,7 +136,6 @@
 
         // Load Skills data
         await LoadSkillsDataAsync();
-
     }
     
 }

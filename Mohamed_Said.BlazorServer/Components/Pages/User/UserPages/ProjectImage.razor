@@ -1,9 +1,11 @@
-﻿
-@if (ProjectImageDtos is not null && ProjectImageDtos.Any())
+﻿@page "/{ProjectTitle}/Images"
+@layout NoLayout
+@inject IProjectService projectService
+@inject NavigationManager navigationManager
+@if (projectImageDtos is not null && projectImageDtos.Any())
 {
     <!-- Gallery Modal/Overlay -->
-    <div id="galleryModal"
-         class="@(ShowImage ? "":"hidden") fixed left-0 top-0 w-full h-full bg-black/90 z-50 items-center justify-center transition-all duration-300">
+    <div class="fixed left-0 top-0 w-full h-full bg-black/90 z-50 items-center justify-center transition-all duration-300">
 
         <!-- Close Button -->
         <button id="closeGalleryModal" @onclick="CloseImage"
@@ -17,7 +19,7 @@
         <div class="absolute top-3 left-3 text-white/80">
             <span id="currentImageNum">@(currentIndex+1)</span>
             <span>/</span>
-            <span id="totalImages">@(ProjectImageDtos.Count)</span>
+            <span id="totalImages">@(projectImageDtos.Count)</span>
         </div>
         <!-- Modal Content -->
         <div class="w-full max-w-5xl px-4 py-4 mx-auto">
@@ -55,7 +57,7 @@
             </svg>
         </button>
 
-        <button @onclick="NextImage" disabled="@(currentIndex == ProjectImageDtos.Count-1 ? true : false )"
+        <button @onclick="NextImage" disabled="@(currentIndex == projectImageDtos.Count-1 ? true : false )"
                 class="absolute top-1/2 -right-1 xl:right-12
             text-white/80 hover:text-white transition-colors duration-300
             disabled:opacity-30 disabled:cursor-not-allowed">
@@ -69,45 +71,71 @@
 }
 
 @code {
-    [Parameter]
-    public List<ProjectImageDto>? ProjectImageDtos { get; set; }
+    private ProjectDto? projectDto;
+    private List<ProjectImageDto>? projectImageDtos;
     private ProjectImageDto? currentImage;
     private int currentIndex = 0;
+
+
     [Parameter]
-    public bool ShowImage {get ; set; } = false; // Used to control visibility of the modal
-
-    [Parameter]
-    public EventCallback CloseImageModal { get; set; }
+    public string? ProjectTitle { get; set; }
 
 
-    protected override void OnParametersSet()
+    protected override async Task OnInitializedAsync()
     {
-        if (ShowImage)
+        Console.WriteLine("start images page init");
+
+
+        Console.WriteLine("project title " + ProjectTitle);
+        Console.WriteLine("project title " + (ProjectTitle == ""));
+        Console.WriteLine("project title " + (ProjectTitle is null));
+
+        if (!string.IsNullOrEmpty(ProjectTitle))
         {
-            if (ProjectImageDtos is not null && ProjectImageDtos.Any())
+            Console.WriteLine("project title is not null " + ProjectTitle);
+            projectDto = await projectService.GetByTitleAsync(ProjectTitle);
+            if (projectDto is not null && projectDto.ProjectImages is not null && projectDto.ProjectImages.Any())
             {
-                currentImage = ProjectImageDtos.FirstOrDefault();
+                projectImageDtos = projectDto.ProjectImages.ToList();
+                currentImage = projectImageDtos.FirstOrDefault();
+                Console.WriteLine(currentImage?.Title ?? "ff");
                 currentIndex = 0;
+
+            }
+            else
+            {
+                Console.WriteLine("go to not found due to projectDTO");
+                // If the project is not found, navigate to the NotFound page
+                navigationManager.NavigateTo("/NotFound");
+                return; // Exit early if the project is not found
             }
         }
-        base.OnParametersSet();
+        else
+        {
+            Console.WriteLine("ProjectTitle is null, navigating to NotFound");
+            navigationManager.NavigateTo("/NotFound");
+            return; // Exit early if the ProjectTitle is null
+        }
+        Console.WriteLine("End of Projectimage initi");
+
     }
+
 
     private void NextImage()
     {
-        if (ProjectImageDtos is not null && currentIndex < ProjectImageDtos.Count - 1)
+        if (projectImageDtos is not null && currentIndex < projectImageDtos.Count - 1)
         {
             currentIndex++;
-            currentImage = ProjectImageDtos[currentIndex];
+            currentImage = projectImageDtos[currentIndex];
         }
     }
 
     private void PreviousImage()
     {
-        if (ProjectImageDtos is not null && currentIndex > 0)
+        if (projectImageDtos is not null && currentIndex > 0)
         {
             currentIndex--;
-            currentImage = ProjectImageDtos[currentIndex];
+            currentImage = projectImageDtos[currentIndex];
         }
     }
 
@@ -115,7 +143,8 @@
     {
         currentImage = null;
         currentIndex = 0;
-        CloseImageModal.InvokeAsync();
+        navigationManager.NavigateTo("/",true);
+        return;
     }
     
 }

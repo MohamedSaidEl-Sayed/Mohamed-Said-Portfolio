@@ -13,6 +13,7 @@ namespace Mohamed_Said.Shared.DTOs.AnonymousUser.Project
         public string FeaturedImageUrl { get; set; } = string.Empty;
         public string? ProjectUrl { get; set; }
         public string? RepoUrl { get; set; }
+        public string? DatabaseDesignUrl { get; set; }  // as a pdf file on google drive
         public DateTime StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public bool IsCurrent { get; set; }
@@ -25,6 +26,8 @@ namespace Mohamed_Said.Shared.DTOs.AnonymousUser.Project
     public class ProjectSkillDto
     {
         public SkillDto Skill { get; set; } = new SkillDto();
+        public int DisplayOrder { get; set; }
+
     }
 
     public class ProjectImageDto

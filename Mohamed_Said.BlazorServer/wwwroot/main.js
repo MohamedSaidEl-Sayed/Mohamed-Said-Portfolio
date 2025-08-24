@@ -83,11 +83,11 @@
         if (skillCategoriesContainer && skillCategorySlideLeft && skillCategorySlideRight) {
 
             skillCategorySlideLeft.addEventListener('click', () => {
-                skillCategoriesContainer.scrollBy({ left: -150, behavior: 'smooth' });
+                skillCategoriesContainer.scrollBy({ left: -200, behavior: 'smooth' });
             });
 
             skillCategorySlideRight.addEventListener('click', () => {
-                skillCategoriesContainer.scrollBy({ left: 150, behavior: 'smooth' });
+                skillCategoriesContainer.scrollBy({ left: 200, behavior: 'smooth' });
             });
 
 
@@ -124,11 +124,11 @@
         if (courseCategoriesContainer && courseCategorySlideLeft && courseCategorySlideRight) {
 
             courseCategorySlideLeft.addEventListener('click', () => {
-                courseCategoriesContainer.scrollBy({ left: -150, behavior: 'smooth' });
+                courseCategoriesContainer.scrollBy({ left: -200, behavior: 'smooth' });
             });
 
             courseCategorySlideRight.addEventListener('click', () => {
-                courseCategoriesContainer.scrollBy({ left: 150, behavior: 'smooth' });
+                courseCategoriesContainer.scrollBy({ left: 200, behavior: 'smooth' });
             });
 
 

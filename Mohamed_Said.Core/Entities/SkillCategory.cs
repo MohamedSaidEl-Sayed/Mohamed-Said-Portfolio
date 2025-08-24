@@ -22,6 +22,8 @@ namespace Mohamed_Said.Core.Entities
         [StringLength(10)]
         public string Icon { get; set; } = string.Empty;
 
+        public bool Show { get; set; } = true;
+
         // Foreign Key
         public int AdminId { get; set; }
 

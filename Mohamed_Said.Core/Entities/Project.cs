@@ -33,6 +33,10 @@ namespace Mohamed_Said.Core.Entities
         [StringLength(1000)]
         public string? RepoUrl { get; set; }
 
+        [Url]
+        [StringLength(1000)]
+        public string? DatabaseDesignUrl { get; set; }  // as a pdf file on google drive
+
         [Required]
         public DateTime StartDate { get; set; }
 

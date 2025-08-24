@@ -10,6 +10,7 @@ namespace Mohamed_Said.Core.Interfaces.IServices
         // Anonymous
         Task<IEnumerable<ProjectDto>> GetAllAsync();
         Task<int> GetCountAsync();
+        Task<ProjectDto?> GetByTitleAsync(string? projectTitle);
 
         // Admin
         Task<IEnumerable<A_ProjectDto>> A_GetAllAsync();

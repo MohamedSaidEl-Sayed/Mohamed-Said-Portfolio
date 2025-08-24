@@ -7,6 +7,9 @@
     <UserSecretsId>aspnet-Mohamed_Said.BlazorServer-eae9c7fd-ecc4-4462-be3a-48073fcaf598</UserSecretsId>
   </PropertyGroup>
 
+
+ 
+
   
 
 
@@ -28,6 +31,7 @@
     <Folder Include="Components\Pages\Admin\AdminComponents\" />
     <Folder Include="Components\Pages\Admin\AdminPages\" />
   </ItemGroup>
+
 
 
 

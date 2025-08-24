@@ -1,8 +1,11 @@
-﻿
-@if(ProjectVideoDtos is not null && ProjectVideoDtos.Any())
+﻿@page "/{ProjectTitle}/Videos"
+@layout NoLayout
+@inject IProjectService projectService
+@inject NavigationManager navigationManager
+@if (projectVideoDtos is not null && projectVideoDtos.Any())
 {
     <!-- Video Modal/Overlay -->
-    <div id="videoModal" class="@(ShowVideo ? "":"hidden") fixed left-0 top-0 w-full h-full bg-black/90 z-50 flex items-center justify-center transition-all duration-300">
+    <div class="fixed left-0 top-0 w-full h-full bg-black/90 z-50 flex items-center justify-center transition-all duration-300">
 
         <!-- Close Button -->
         <button id="closeVideoModal" @onclick="CloseVideo"
@@ -14,7 +17,7 @@
 
         <!-- Modal Content -->
         <div class="w-full max-w-5xl px-4">
-            @if(currentVideo is not null)
+            @if (currentVideo is not null)
             {
                 <!-- Video Title -->
                 <h3 id="videoTitle" class="text-white text-lg font-semibold mb-4 text-center md:text-xl">
@@ -23,9 +26,8 @@
 
                 <!-- Video Container -->
                 <div class="aspect-video bg-black rounded-lg overflow-hidden">
-                    <iframe id="videoFrame"
-                            class="w-full h-full"
-                            src="@(currentVideo.VideoUrl)"
+                    <iframe class="w-full h-full"
+                            src=" @(currentVideo.VideoUrl)"
                             frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen>
@@ -44,10 +46,10 @@
             </svg>
         </button>
 
-        <button @onclick="NextVideo"  disabled = "@(currentIndex == ProjectVideoDtos.Count-1 ? true : false )"
+        <button @onclick="NextVideo" disabled="@(currentIndex == projectVideoDtos.Count-1 ? true : false )"
                 class="absolute top-1/2 -right-1 xl:right-12
                     text-white/80 hover:text-white transition-colors duration-300
-                    disabled:opacity-30 disabled:cursor-not-allowed" >
+                    disabled:opacity-30 disabled:cursor-not-allowed">
             <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
             </svg>
@@ -56,56 +58,69 @@
 }
 
 @code {
-    [Parameter]
-    public List<ProjectVideoDto>? ProjectVideoDtos { get; set; }
+    private ProjectDto? projectDto;
+    private List<ProjectVideoDto>? projectVideoDtos;
     private ProjectVideoDto? currentVideo;
     private int currentIndex = 0;
+
+
     [Parameter]
-    public bool ShowVideo { get; set; } = false; // Used to control visibility of the modal
-
-    [Parameter]
-    public EventCallback CloseVideoModal { get; set; } 
+    public string? ProjectTitle { get; set; }
 
 
-    protected override void OnParametersSet()
+
+    protected override async Task OnInitializedAsync()
     {
-        if (ShowVideo)
+        if (!string.IsNullOrEmpty(ProjectTitle))
         {
-            if (ProjectVideoDtos is not null && ProjectVideoDtos.Any())
+            projectDto = await projectService.GetByTitleAsync(ProjectTitle);
+            if (projectDto is not null && projectDto.ProjectVideos is not null && projectDto.ProjectVideos.Any())
             {
-                currentVideo = ProjectVideoDtos.FirstOrDefault();
+                projectVideoDtos = projectDto.ProjectVideos.ToList();
+                currentVideo = projectVideoDtos.FirstOrDefault();
                 currentIndex = 0;
+                
+            }
+            else
+            {
+                // If the project is not found, navigate to the NotFound page
+                navigationManager.NavigateTo("/NotFound");
+                return; // Exit early if the project is not found
             }
         }
-        base.OnParametersSet();
+        else
+        {
+            navigationManager.NavigateTo("/NotFound");
+            return; // Exit early if the ProjectTitle is null or empty
+        }
+
     }
-
-
 
     private void NextVideo()
     {
-        if (ProjectVideoDtos is not null && currentIndex < ProjectVideoDtos.Count - 1)
+        if (projectVideoDtos is not null && currentIndex < projectVideoDtos.Count - 1)
         {
             currentIndex++;
-            currentVideo = ProjectVideoDtos[currentIndex];
+            currentVideo = projectVideoDtos[currentIndex];
         }
     }
 
     private void PreviousVideo()
     {
-        if (ProjectVideoDtos is not null && currentIndex > 0)
+        if (projectVideoDtos is not null && currentIndex > 0)
         {
             currentIndex--;
-            currentVideo = ProjectVideoDtos[currentIndex];
+            currentVideo = projectVideoDtos[currentIndex];
         }
     }
 
     private void CloseVideo()
     {
-        currentVideo = null ;
+        currentVideo = null;
         currentIndex = 0;
-        CloseVideoModal.InvokeAsync();
+        navigationManager.NavigateTo("/",true);
+        return;
     }
 
-    
+
 }

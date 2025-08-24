@@ -85,10 +85,10 @@
         this.CategoryId = categoryId;
 
         // Fetch certifications based on the selected category
-        Certifications = await certificationService.GetSomeCertificationsAsync(categoryId, 0, 3) ?? new List<CertificationDto>();
+        Certifications = await certificationService.GetSomeCertificationsAsync(categoryId, 0, 6) ?? new List<CertificationDto>();
 
         // Fetch courses based on the selected category
-        Courses = await courseService.GetSomeCoursesAsync(categoryId, 0, 3) ?? new List<CourseDto>();
+        Courses = await courseService.GetSomeCoursesAsync(categoryId, 0, 6) ?? new List<CourseDto>();
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)

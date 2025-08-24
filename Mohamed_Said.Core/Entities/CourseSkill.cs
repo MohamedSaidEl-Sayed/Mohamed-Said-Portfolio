@@ -21,5 +21,8 @@ namespace Mohamed_Said.Core.Entities
         // Navigation Properties
         public Course Course { get; set; } = null!;
         public Skill Skill { get; set; } = null!;
+
+        [Range(0, 50)] // it doesn't applaying on database, it just for c# class 
+        public int DisplayOrder { get; set; }
     }
 }

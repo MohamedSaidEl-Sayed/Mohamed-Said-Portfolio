@@ -74,4 +74,14 @@
 @code {
     [Parameter]
     public CertificationDto? Certification { get; set; } = new CertificationDto();
+    protected override void OnInitialized()
+    {
+        if (Certification is not null)
+        {
+            if (Certification.CertificationSkills is not null && Certification.CertificationSkills.Any())
+                Certification.CertificationSkills = Certification.CertificationSkills.OrderBy(ps => ps.DisplayOrder).ToList();
+        }
+
+        base.OnInitialized();
+    }
 }

@@ -22,5 +22,8 @@ namespace Mohamed_Said.Core.Entities
         // Navigation Properties
         public Experience? Experience { get; set; }
         public Skill? Skill { get; set; }
+
+        [Range(0, 50)] // it doesn't applaying on database, it just for c# class 
+        public int DisplayOrder { get; set; }
     }
 }

@@ -21,5 +21,7 @@ namespace Mohamed_Said.Shared.DTOs.AnonymousUser.Experience
     public class ExperienceSkillDto
     {
         public SkillDto Skill { get; set; } = new SkillDto();
+        public int DisplayOrder { get; set; }
+
     }
 }

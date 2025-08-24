@@ -73,4 +73,14 @@
 @code {
     [Parameter]
     public ExperienceDto Experience { get; set; } = new ExperienceDto();
+    protected override void OnInitialized()
+    {
+        if (Experience is not null)
+        {
+            if (Experience.ExperienceSkills is not null && Experience.ExperienceSkills.Any())
+                Experience.ExperienceSkills = Experience.ExperienceSkills.OrderBy(ps => ps.DisplayOrder).ToList();
+        }
+
+        base.OnInitialized();
+    }
 }

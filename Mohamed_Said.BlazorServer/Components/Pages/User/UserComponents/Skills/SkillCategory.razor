@@ -1,6 +1,6 @@
 ﻿@inject IJSRuntime JSRuntime;
 
-@if (SkillCategorydto is not null)
+@if (SkillCategorydto is not null && SkillCategorydto.Show)
 {
     @* stopPropagation This tells Blazor not to stop propagation, so your JS event listener can still run. *@
     <button @onclick="async () => await OnCategoryChange.InvokeAsync(SkillCategorydto.Id)" 

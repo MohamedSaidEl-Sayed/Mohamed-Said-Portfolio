@@ -26,5 +26,7 @@ namespace Mohamed_Said.Shared.DTOs.AnonymousUser.Certification
     public class CertificationSkillDto
     {
         public SkillDto Skill { get; set; } = new SkillDto();
+        public int DisplayOrder { get; set; }
+
     }
 }

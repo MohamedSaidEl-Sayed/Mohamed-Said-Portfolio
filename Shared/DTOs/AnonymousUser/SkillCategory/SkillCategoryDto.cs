@@ -9,6 +9,7 @@ namespace Mohamed_Said.Shared.DTOs.AnonymousUser.SkillCategory
         public string Name { get; set; } = string.Empty;
         public bool IsFirstElement { get; set; } = false;
         public string Icon { get; set; } = string.Empty;
+        public bool Show { get; set; }
 
     }
 

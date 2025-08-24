@@ -78,6 +78,121 @@
 /* === Git | GitHub Skill Badge === */
 @source inline("bg-gray-100 text-gray-600 {dark:}bg-gray-500/20 {dark:}text-gray-400");
 
+/* Database Design Skill Badge */
+@source inline("bg-slate-100 text-slate-600 {dark:}bg-slate-900/20 {dark:}text-slate-400");
+
+/* Redis Skill Badge */
+@source inline("bg-pink-100 text-pink-600 {dark:}bg-pink-900/20 {dark:}text-pink-400");
+
+/* CI/CD Skill Badge */
+@source inline("bg-sky-100 text-sky-600 {dark:}bg-sky-900/20 {dark:}text-sky-400");
+
+/* Azure DevOps Skill Badge */
+@source inline("bg-blue-100 text-blue-600 {dark:}bg-blue-900/20 {dark:}text-blue-400");
+
+/* GitHub Actions Skill Badge */
+@source inline("bg-gray-100 text-gray-600 {dark:}bg-gray-500/20 {dark:}text-gray-400");
+
+/* Red Hat Linux Skill Badge */
+@source inline("bg-red-100 text-red-600 {dark:}bg-red-900/20 {dark:}text-red-400");
+
+/* Clean Architecture Skill Badge */
+@source inline("bg-emerald-100 text-emerald-600 {dark:}bg-emerald-900/20 {dark:}text-emerald-400");
+
+/* Microservices Skill Badge */
+@source inline("bg-slate-100 text-slate-600 {dark:}bg-slate-900/20 {dark:}text-slate-400");
+
+/* Event-Driven Architecture Skill Badge */
+@source inline("bg-teal-100 text-teal-600 {dark:}bg-teal-900/20 {dark:}text-teal-400");
+
+/* Domain-Driven Design Skill Badge */
+@source inline("bg-cyan-100 text-cyan-600 {dark:}bg-cyan-900/20 {dark:}text-cyan-400");
+
+/* OOP Skill Badge */
+@source inline("bg-blue-100 text-blue-600 {dark:}bg-blue-900/20 {dark:}text-blue-400");
+
+/* Data Structures & Algorithms Skill Badge */
+@source inline("bg-red-100 text-red-600 {dark:}bg-red-900/20 {dark:}text-red-400");
+
+/* SOLID Principles Skill Badge */
+@source inline("bg-violet-100 text-violet-600 {dark:}bg-violet-900/20 {dark:}text-violet-400");
+
+/* Design Patterns Skill Badge */
+@source inline("bg-indigo-100 text-indigo-600 {dark:}bg-indigo-900/20 {dark:}text-indigo-400");
+
+/* === Testing & Quality Assurance === */
+/* Unit Testing Skill Badge */
+@source inline("bg-green-100 text-green-600 {dark:}bg-green-900/20 {dark:}text-green-400");
+
+/* Integration Testing Skill Badge */
+@source inline("bg-teal-100 text-teal-600 {dark:}bg-teal-900/20 {dark:}text-teal-400");
+
+/* TDD Skill Badge */
+@source inline("bg-cyan-100 text-cyan-600 {dark:}bg-cyan-900/20 {dark:}text-cyan-400");
+
+/* === Security & Performance === */
+/* Security Best Practices Skill Badge */
+@source inline("bg-red-100 text-red-600 {dark:}bg-red-900/20 {dark:}text-red-400");
+
+/* JWT Skill Badge */
+@source inline("bg-green-100 text-green-600 {dark:}bg-green-900/20 {dark:}text-green-400");
+
+/* Performance Optimization Skill Badge */
+@source inline("bg-orange-100 text-orange-600 {dark:}bg-orange-900/20 {dark:}text-orange-400");
+
+/* === API & Communication === */
+/* RESTful APIs Skill Badge */
+@source inline("bg-purple-100 text-purple-600 {dark:}bg-purple-900/20 {dark:}text-purple-400");
+
+/* GraphQL Skill Badge */
+@source inline("bg-fuchsia-100 text-fuchsia-600 {dark:}bg-fuchsia-900/20 {dark:}text-fuchsia-400");
+
+/* SignalR Skill Badge */
+@source inline("bg-rose-100 text-rose-600 {dark:}bg-rose-900/20 {dark:}text-rose-400");
+
+/* === Monitoring & Analytics === */
+/* Application Insights Skill Badge */
+@source inline("bg-amber-100 text-amber-600 {dark:}bg-amber-900/20 {dark:}text-amber-400");
+
+/* Logging & Monitoring Skill Badge */
+@source inline("bg-yellow-100 text-yellow-600 {dark:}bg-yellow-900/20 {dark:}text-yellow-400");
+
+/* === Methodologies & Soft Skills === */
+/* Agile Methodology Skill Badge */
+@source inline("bg-lime-100 text-lime-600 {dark:}bg-lime-900/20 {dark:}text-lime-400");
+
+/* Prompt Engineering Skill Badge */
+@source inline("bg-pink-100 text-pink-600 {dark:}bg-pink-900/20 {dark:}text-pink-400");
+
+/* Problem Solving Skill Badge */
+@source inline("bg-emerald-100 text-emerald-600 {dark:}bg-emerald-900/20 {dark:}text-emerald-400");
+
+/* Team Collaboration Skill Badge */
+@source inline("bg-violet-100 text-violet-600 {dark:}bg-violet-900/20 {dark:}text-violet-400");
+
+/* Code Review Skill Badge */
+@source inline("bg-indigo-100 text-indigo-600 {dark:}bg-indigo-900/20 {dark:}text-indigo-400");
+
+/* === Additional Technologies === */
+/* Message Queues Skill Badge */
+@source inline("bg-lime-100 text-lime-600 {dark:}bg-lime-900/20 {dark:}text-lime-400");
+
+/* DOM Skill Badge */
+@source inline("bg-emerald-100 text-emerald-600 {dark:}bg-emerald-900/20 {dark:}text-emerald-400");
+
+/* BOM Skill Badge */
+@source inline("bg-teal-100 text-teal-600 {dark:}bg-teal-900/20 {dark:}text-teal-400");
+
+/* LocalStorage Skill Badge */
+@source inline("bg-purple-100 text-purple-600 {dark:}bg-purple-900/20 {dark:}text-purple-400");
+
+/* JSON Skill Badge */
+@source inline("bg-amber-100 text-amber-600 {dark:}bg-amber-900/20 {dark:}text-amber-400");
+
+
+
+
+
 /* === WhatsApp Icon Hover === */
 @source inline("hover:text-[#25D366] {dark:}hover:text-[#25D366]");
 
@@ -92,4 +207,6 @@
 
 /* === Contact Text Color === */
 @source inline("text-light-text-secondary {dark:}text-dark-text-secondary");
+
+
 

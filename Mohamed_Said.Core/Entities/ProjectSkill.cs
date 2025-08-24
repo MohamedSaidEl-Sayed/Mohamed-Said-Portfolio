@@ -19,5 +19,8 @@ namespace Mohamed_Said.Core.Entities
         // Foreign Key to Skill
         public int SkillId { get; set; }
         public Skill Skill { get; set; } = null!;
+
+        [Range(0, 50)] // it doesn't applaying on database, it just for c# class 
+        public int DisplayOrder { get; set; }
     }
 }

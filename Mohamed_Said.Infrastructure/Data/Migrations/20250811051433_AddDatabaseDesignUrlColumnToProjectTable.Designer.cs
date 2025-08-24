@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Mohamed_Said.Infrastructure.Data.DbContexts;
 
@@ -11,9 +12,11 @@ using Mohamed_Said.Infrastructure.Data.DbContexts;
 namespace Mohamed_Said.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250811051433_AddDatabaseDesignUrlColumnToProjectTable")]
+    partial class AddDatabaseDesignUrlColumnToProjectTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -270,9 +273,6 @@ namespace Mohamed_Said.Infrastructure.Data.Migrations
                     b.Property<int>("CertificationId")
                         .HasColumnType("int");
 
-                    b.Property<int>("DisplayOrder")
-                        .HasColumnType("int");
-
                     b.Property<int>("SkillId")
                         .HasColumnType("int");
 
@@ -475,9 +475,6 @@ namespace Mohamed_Said.Infrastructure.Data.Migrations
                     b.Property<int>("CourseId")
                         .HasColumnType("int");
 
-                    b.Property<int>("DisplayOrder")
-                        .HasColumnType("int");
-
                     b.Property<int>("SkillId")
                         .HasColumnType("int");
 
@@ -550,9 +547,6 @@ namespace Mohamed_Said.Infrastructure.Data.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("DisplayOrder")
-                        .HasColumnType("int");
 
                     b.Property<int>("ExperienceId")
                         .HasColumnType("int");
@@ -715,9 +709,6 @@ namespace Mohamed_Said.Infrastructure.Data.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("DisplayOrder")
-                        .HasColumnType("int");
 
                     b.Property<int>("ProjectId")
                         .HasColumnType("int");
